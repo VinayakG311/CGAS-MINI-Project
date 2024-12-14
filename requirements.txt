@@ -1,6 +1,7 @@
 Flask==3.1.0
-flask_cors==5.0.0
+Flask_Cors==5.0.0
 gensim==4.3.3
+imbalanced_learn==0.12.4
 imblearn==0.0
 matplotlib==3.8.1
 nltk==3.9.1
