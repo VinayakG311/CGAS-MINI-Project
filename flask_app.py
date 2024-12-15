@@ -13,11 +13,12 @@ CORS(app,support_credentials=True)
 
 nltk.download('stopwords')
 nltk.download('wordnet')
-
+#Stop Words for Preprocessing. 
 stop_words = set(stopwords.words("english"))
 word_lemmatizer = WordNetLemmatizer()
 cooking_words = {"cut","organic","fresh","large","small","diced","chopped","minced","cup","spoon","chop","tablespoon","teaspoon","pinch","boiled","baked","grilled","steamed","sliced","whole","crushed","pureed","roasted","blended","mashed","peeled","shredded","cut","stirred","whisked","seared","toasted","frozen","softened","defrosted","grated","fried","drained","seasoned","marinated","garnished","glazed","caramelized","zested","dressed","broiled","cubed","poured","melted","scrambled","simmered","braised","browned","reduced","cooled","tossed"}
 
+#Preprocess function which gives the relevant ingredient information by cutting out the stop words and mapping plural ingredients.
 def pre_process(ingredient_list):
     print(f"INGRIDIENTS IN PREPROCESSING : {ingredient_list}")
     stop_words = set(stopwords.words("english"))
@@ -45,7 +46,7 @@ def pre_process(ingredient_list):
     return " ".join(ingridient_processed)
 
 
-  
+#Api Endpoint  
 @app.route('/predict', methods=['POST','OPTIONS'])
 @cross_origin(supports_credentials=True)
 def GetPrediction():
@@ -56,7 +57,7 @@ def GetPrediction():
   ingredients = request.json
   ingredients_preprocessed = [pre_process(ingredients)]
   # print(df)
-  
+  #Loading our best model from Machine Learning Analysis
   with open("pipeline.pkl", 'rb') as f:
     model = pickle.load(f)
   print(f"Preprocessed ingridients : {ingredients_preprocessed}")
@@ -64,6 +65,7 @@ def GetPrediction():
   d={}
   d["output"]=pred[0]
   print(pred)
+  #Returning the predicted cuisine
   return jsonify(d)
 
 if __name__ == '__main__':
