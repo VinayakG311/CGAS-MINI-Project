@@ -26,7 +26,10 @@ Load the dataset from [Dataset](https://www.kaggle.com/competitions/whats-cookin
 Place the train.json files in a folder "Dataset"  \
 Run the Main.ipynb Jupyter Notebook cell by cell
 
-
+## Deployed client and server
+Client deployed at [React App](https://cgas-mini-project.onrender.com) \
+\
+Server API at [Flask API](https://vinayakg311.pythonanywhere.com/predict)
 
 ## Run the client and server locally
 
